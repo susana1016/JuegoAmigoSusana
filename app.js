@@ -1,20 +1,34 @@
-//Variables
-const imputAmigo = document.getElementById ("amigo");
-const listaAmigos =[];
-const ullistaAmigos = document.getElementById ("listaAmigos");
-const ulResultado = document.getElementById ("resultado");
+const inputAmigo = document.getElementById("amigo");
+const listaAmigos = [];
+const ulListaAmigos = document.getElementById("listaAmigos");
+const ulResultado = document.getElementById("resultado");
 
-function agregarAmigo(){
-    if (imputAmigo.value == ""){
-        alert ("Debes ingresar un nombre")
+function agregarAmigo() {
+    const nombre = inputAmigo.value.trim();
+
+    if (nombre === "") {
+        alert("Por favor, inserte un nombre.");
+        return;
     }
-    listaAmigos.push(imputAmigo.value);
-    ullistaAmigos.innerHTML += `<li>${imputAmigo.value}</li>`;
-};
-agregarAmigo();
 
-function sortearAmigo (){
-    const random = Math.floor((Math.random() * listaAmigos.length));
+    listaAmigos.push(nombre);
+    mostrarLista();
+    inputAmigo.value = ""; // limpiar el campo
+}
+
+function mostrarLista() {
+    ulListaAmigos.innerHTML = "";
+    for (let i = 0; i < listaAmigos.length; i++) {
+        ulListaAmigos.innerHTML += `<li>${listaAmigos[i]}</li>`;
+    }
+}
+
+function sortearAmigo() {
+    if (listaAmigos.length === 0) {
+        alert("No hay amigos en la lista.");
+        return;
+    }
+    const random = Math.floor(Math.random() * listaAmigos.length);
     const amigoSecreto = listaAmigos[random];
-    ulResultado.innerHTML = `<li> El amigo secreto es: ${amigoSecreto}</li>`;
-};
+    ulResultado.innerHTML = `<li>El amigo secreto es: ${amigoSecreto}</li>`;
+}
