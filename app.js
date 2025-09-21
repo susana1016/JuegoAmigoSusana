@@ -25,10 +25,16 @@ function mostrarLista() {
 
 function sortearAmigo() {
     if (listaAmigos.length === 0) {
-        alert("No hay amigos en la lista.");
+        alert("Ya no quedan amigos por asignar.");
         return;
     }
+
     const random = Math.floor(Math.random() * listaAmigos.length);
     const amigoSecreto = listaAmigos[random];
+
+    // mostrar resultado
     ulResultado.innerHTML = `<li>El amigo secreto es: ${amigoSecreto}</li>`;
+
+    // eliminarlo para que no vuelva a salir
+    listaAmigos.splice(random, 1);
 }
